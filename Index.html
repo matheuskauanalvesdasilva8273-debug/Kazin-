@@ -3,51 +3,48 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Kazin — Jogos</title>
+<title>Kazin — Subway Surfers</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:#08080f;color:#e2e2f0;font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:100;background:rgba(8,8,15,.95);backdrop-filter:blur(16px);border-bottom:1px solid #1e1e30;padding:0 14px;height:52px;display:flex;align-items:center;gap:10px}
-.logo{font-size:22px;font-weight:900;letter-spacing:-1px;background:linear-gradient(135deg,#c084fc,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;flex-shrink:0}
-.search-wrap{flex:1;position:relative;max-width:320px}
-.search-wrap input{width:100%;background:#13131f;border:1px solid #1e1e30;border-radius:8px;padding:7px 12px 7px 32px;color:#e2e2f0;font-size:13px;outline:none;transition:border-color .2s}
+body{background:#08080f;color:#e2e2f0;font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;padding-bottom:env(safe-area-inset-bottom,0px)}
+header{position:sticky;top:0;z-index:100;background:rgba(8,8,15,.96);backdrop-filter:blur(16px);border-bottom:1px solid #1a1a2e;padding:0 14px;height:52px;display:flex;align-items:center;gap:10px}
+.logo{font-size:20px;font-weight:900;letter-spacing:-1px;background:linear-gradient(135deg,#c084fc,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;flex-shrink:0}
+.search-wrap{flex:1;position:relative}
+.search-wrap input{width:100%;background:#111120;border:1px solid #1a1a2e;border-radius:8px;padding:7px 12px 7px 32px;color:#e2e2f0;font-size:13px;outline:none;transition:border-color .2s}
 .search-wrap input:focus{border-color:#7c3aed}
 .search-wrap::before{content:'🔍';position:absolute;left:9px;top:50%;transform:translateY(-50%);font-size:12px;pointer-events:none}
-.cats{display:flex;gap:6px;padding:10px 14px;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid #1e1e30}
+.cats{display:flex;gap:6px;padding:10px 14px;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid #1a1a2e}
 .cats::-webkit-scrollbar{display:none}
-.cat{flex-shrink:0;padding:5px 13px;border-radius:20px;border:1px solid #1e1e30;background:#13131f;color:#6b6b8a;font-size:12px;font-weight:600;cursor:pointer;transition:all .15s;white-space:nowrap}
+.cat{flex-shrink:0;padding:5px 13px;border-radius:20px;border:1px solid #1a1a2e;background:#111120;color:#6b6b8a;font-size:12px;font-weight:600;cursor:pointer;transition:all .15s;white-space:nowrap}
 .cat.on,.cat:hover{background:#7c3aed;border-color:#7c3aed;color:#fff}
 main{padding:14px}
-.sec{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#6b6b8a;margin-bottom:10px}
+.sec{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#6b6b8a;margin-bottom:10px;margin-top:4px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:9px;margin-bottom:20px}
-.card{background:#13131f;border:1px solid #1e1e30;border-radius:11px;overflow:hidden;cursor:pointer;transition:transform .15s,border-color .15s,box-shadow .15s;display:none}
-.card.show{display:block}
-.card:hover{transform:translateY(-2px);border-color:#7c3aed;box-shadow:0 6px 20px rgba(124,58,237,.25)}
-.thumb{width:100%;aspect-ratio:16/9;background:linear-gradient(135deg,#0f0f1a,#1e1e30);display:flex;align-items:center;justify-content:center;font-size:38px;position:relative}
+.card{background:#111120;border:1px solid #1a1a2e;border-radius:11px;overflow:hidden;cursor:pointer;transition:transform .15s,border-color .15s,box-shadow .15s}
+.card:hover{transform:translateY(-2px);border-color:#7c3aed;box-shadow:0 6px 20px rgba(124,58,237,.3)}
+.thumb{width:100%;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;font-size:36px;position:relative;overflow:hidden}
 .thumb::after{content:'▶';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.55);color:#fff;font-size:20px;opacity:0;transition:opacity .15s}
 .card:hover .thumb::after{opacity:1}
 .info{padding:7px 9px 9px}
-.gname{font-size:12px;font-weight:700;color:#e2e2f0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gname{font-size:12px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .gtag{font-size:10px;color:#6b6b8a;margin-top:2px}
-.empty{display:none;padding:40px;text-align:center;color:#6b6b8a;font-size:13px}
-/* PLAYER */
+.empty{padding:40px;text-align:center;color:#6b6b8a;font-size:13px;display:none}
+/* player */
 #ov{display:none;position:fixed;inset:0;z-index:200;background:#000;flex-direction:column}
 #ov.open{display:flex}
-.pbar{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#0d0d16;border-bottom:1px solid #1e1e30;flex-shrink:0}
-.back{background:#1a1a26;border:1px solid #1e1e30;border-radius:7px;color:#e2e2f0;padding:6px 12px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;transition:background .15s}
+.pbar{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#0c0c18;border-bottom:1px solid #1a1a2e;flex-shrink:0}
+.back{background:#1a1a2e;border:1px solid #252540;border-radius:7px;color:#e2e2f0;padding:6px 12px;font-size:13px;font-weight:600;cursor:pointer;transition:background .15s;white-space:nowrap}
 .back:hover{background:#7c3aed;border-color:#7c3aed}
 .ptitle{font-size:14px;font-weight:700;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.fsbtn{background:none;border:1px solid #1e1e30;border-radius:7px;color:#6b6b8a;padding:6px 10px;font-size:13px;cursor:pointer;flex-shrink:0;transition:color .15s,border-color .15s}
+.fsbtn{background:none;border:1px solid #1a1a2e;border-radius:7px;color:#6b6b8a;padding:6px 10px;font-size:13px;cursor:pointer;flex-shrink:0;transition:color .15s,border-color .15s}
 .fsbtn:hover{color:#e2e2f0;border-color:#7c3aed}
 #fw{flex:1;position:relative}
 #fr{width:100%;height:100%;border:none;display:block}
-.ld{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:#08080f;transition:opacity .4s}
+.ld{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:#08080f;transition:opacity .4s}
 .ld.h{opacity:0;pointer-events:none}
-.sp{width:34px;height:34px;border:3px solid #1e1e30;border-top-color:#c084fc;border-radius:50%;animation:spin .7s linear infinite}
+.sp{width:36px;height:36px;border:3px solid #1a1a2e;border-top-color:#c084fc;border-radius:50%;animation:spin .7s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 .lt{font-size:13px;color:#6b6b8a}
-/* EXTERNAL BADGE */
-.ext-badge{font-size:9px;background:#7c3aed22;border:1px solid #7c3aed55;color:#c084fc;border-radius:4px;padding:1px 5px;margin-top:3px;display:inline-block}
 </style>
 </head>
 <body>
@@ -55,34 +52,34 @@ main{padding:14px}
 <header>
   <div class="logo">Kazin</div>
   <div class="search-wrap">
-    <input id="sq" type="text" placeholder="Buscar…" oninput="filter()">
+    <input id="sq" type="text" placeholder="Buscar versão…" oninput="filter()">
   </div>
 </header>
 
 <div class="cats">
   <div class="cat on" onclick="setCat('all',this)">Todos</div>
-  <div class="cat" onclick="setCat('subway',this)">🚇 Subway Surfers</div>
-  <div class="cat" onclick="setCat('html5',this)">🎮 HTML5</div>
-  <div class="cat" onclick="setCat('corrida',this)">🏃 Corrida</div>
-  <div class="cat" onclick="setCat('puzzle',this)">🧩 Puzzle</div>
+  <div class="cat" onclick="setCat('europa',this)">🌍 Europa</div>
+  <div class="cat" onclick="setCat('americas',this)">🌎 Américas</div>
+  <div class="cat" onclick="setCat('asia',this)">🌏 Ásia</div>
+  <div class="cat" onclick="setCat('especial',this)">⭐ Especial</div>
 </div>
 
 <main>
-  <div class="sec">🔥 Todos os jogos</div>
+  <div class="sec">🚇 Versões do Subway Surfers</div>
   <div class="grid" id="grid"></div>
-  <div class="empty" id="empty">Nenhum jogo encontrado</div>
+  <div class="empty" id="empty">Nenhuma versão encontrada</div>
 </main>
 
 <div id="ov">
   <div class="pbar">
     <button class="back" onclick="closeGame()">← Voltar</button>
     <div class="ptitle" id="ptitle">—</div>
-    <button class="fsbtn" onclick="goFS()">⛶</button>
+    <button class="fsbtn" onclick="goFS()">⛶ Tela cheia</button>
   </div>
   <div id="fw">
     <div class="ld" id="ld">
       <div class="sp"></div>
-      <div class="lt">Carregando…</div>
+      <div class="lt">Carregando o jogo…</div>
     </div>
     <iframe id="fr"
       allow="fullscreen;autoplay;gamepad"
@@ -93,52 +90,32 @@ main{padding:14px}
 </div>
 
 <script>
+const CDN = 'https://cdn.jsdelivr.net/npm/';
+
 const GAMES = [
-  // ── SUBWAY SURFERS (jsdelivr CDN — sem bloqueio de iframe)
-  {id:'ss-london',   name:'Subway Surfers — Londres',    emoji:'🇬🇧', tag:'World Tour', cats:['subway','corrida'],
-   src:'https://cdn.jsdelivr.net/npm/subwaylondon/index.html'},
-  {id:'ss-miami',    name:'Subway Surfers — Miami',      emoji:'🇺🇸', tag:'World Tour', cats:['subway','corrida'],
-   src:'https://cdn.jsdelivr.net/npm/subwaymiami/index.html'},
-  {id:'ss-havana',   name:'Subway Surfers — Havana',     emoji:'🇨🇺', tag:'World Tour', cats:['subway','corrida'],
-   src:'https://cdn.jsdelivr.net/npm/subwayhavana/index.html'},
-  {id:'ss-mexico',   name:'Subway Surfers — México',     emoji:'🇲🇽', tag:'World Tour', cats:['subway','corrida'],
-   src:'https://cdn.jsdelivr.net/npm/subwaymexico/index.html'},
-  // ── HTML5 DO TAVVKKJ (abre direto no tavvkkj.xyz)
-  {id:'tr2',      name:'Temple Run 2',         emoji:'🏛️', tag:'Corrida infinita', cats:['corrida','html5'],
-   src:'https://tavvkkj.xyz/jogar/html5/templerun2',   ext:true},
-  {id:'jj',       name:'Jetpack Joyride',      emoji:'🚀', tag:'Arcade',           cats:['html5'],
-   src:'https://tavvkkj.xyz/jogar/html5/jetpackjoyride', ext:true},
-  {id:'fn',       name:'Fruit Ninja',          emoji:'🍉', tag:'Arcade',           cats:['html5'],
-   src:'https://tavvkkj.xyz/jogar/html5/fruitninja',   ext:true},
-  {id:'dj',       name:'Doodle Jump',          emoji:'🟢', tag:'Plataforma',       cats:['html5'],
-   src:'https://tavvkkj.xyz/jogar/html5/doodle-jump',  ext:true},
-  {id:'cr',       name:'Crossy Road',          emoji:'🐓', tag:'Arcade',           cats:['html5'],
-   src:'https://tavvkkj.xyz/jogar/html5/crossy-road',  ext:true},
-  {id:'gs',       name:'Google Snake',         emoji:'🐍', tag:'Clássico',         cats:['html5','puzzle'],
-   src:'https://tavvkkj.xyz/jogar/html5/googlesnake',  ext:true},
-  {id:'pm',       name:'PAC-MAN Doodle',       emoji:'👾', tag:'Clássico',         cats:['html5','puzzle'],
-   src:'https://tavvkkj.xyz/jogar/html5/pacman-google', ext:true},
-  {id:'ab',       name:'Angry Birds Chrome',   emoji:'🐦', tag:'Puzzle',           cats:['html5','puzzle'],
-   src:'https://tavvkkj.xyz/jogar/html5/angry-birds-chrome', ext:true},
-  {id:'cd',       name:'Chrome Dino',          emoji:'🦕', tag:'Corrida',          cats:['html5','corrida'],
-   src:'https://tavvkkj.xyz/jogar/html5/chrome-dino',  ext:true},
-  {id:'rb',       name:'Retro Bowl',           emoji:'🏈', tag:'Esporte',          cats:['html5'],
-   src:'https://tavvkkj.xyz/jogar/html5/retrobowl',    ext:true},
-  {id:'viv',      name:'Vivaldia',             emoji:'🎸', tag:'Plataforma',       cats:['html5','corrida'],
-   src:'https://tavvkkj.xyz/jogar/html5/vivaldia',     ext:true},
-  {id:'ak',       name:'Apple Knight',         emoji:'⚔️', tag:'Plataforma',       cats:['html5'],
-   src:'https://tavvkkj.xyz/jogar/html5/apple-knight', ext:true},
-  {id:'bl',       name:'BADLAND',              emoji:'🌑', tag:'Plataforma',       cats:['html5'],
-   src:'https://tavvkkj.xyz/jogar/html5/badland',      ext:true},
-  {id:'ctr',      name:'Cut the Rope',         emoji:'🐸', tag:'Puzzle',           cats:['html5','puzzle'],
-   src:'https://tavvkkj.xyz/jogar/html5/cuttherope',   ext:true},
-  {id:'oms',      name:'Om Nom Run',           emoji:'🟢', tag:'Corrida',          cats:['html5','corrida'],
-   src:'https://tavvkkj.xyz/jogar/html5/omnomrun',     ext:true},
-  {id:'mss',      name:'Microsoft Solitaire',  emoji:'🃏', tag:'Cartas',           cats:['html5','puzzle'],
-   src:'https://tavvkkj.xyz/jogar/html5/ms-solitaire', ext:true},
+  // EUROPA
+  {id:'london',  name:'Londres',       flag:'🇬🇧', bg:'#1a1040', cats:['europa'],
+   pkg:'subwaylondon'},
+  {id:'berlin',  name:'Berlim',        flag:'🇩🇪', bg:'#0d1a0d', cats:['europa'],
+   pkg:'subwayberlin'},
+  {id:'zurich',  name:'Zurique',       flag:'🇨🇭', bg:'#1a0d0d', cats:['europa'],
+   pkg:'subwayzurich'},
+  // AMÉRICAS
+  {id:'miami',   name:'Miami',         flag:'🇺🇸', bg:'#001a1a', cats:['americas'],
+   pkg:'subwaymiami'},
+  {id:'havana',  name:'Havana',        flag:'🇨🇺', bg:'#1a1500', cats:['americas'],
+   pkg:'subwayhavana'},
+  {id:'mexico',  name:'México',        flag:'🇲🇽', bg:'#001a08', cats:['americas'],
+   pkg:'subwaymexico'},
+  // ÁSIA
+  {id:'beijing', name:'Pequim',        flag:'🇨🇳', bg:'#1a0000', cats:['asia'],
+   pkg:'subwaybeijing'},
+  // ESPECIAL
+  {id:'winter',  name:'Winter Holiday',flag:'❄️',  bg:'#001020', cats:['especial'],
+   pkg:'subwaywinterholiday'},
 ];
 
-let currentCat = 'all';
+let cat = 'all';
 
 function buildGrid(list) {
   const g = document.getElementById('grid');
@@ -148,15 +125,16 @@ function buildGrid(list) {
   e.style.display = 'none';
   list.forEach(gm => {
     const c = document.createElement('div');
-    c.className = 'card show';
+    c.className = 'card';
     c.innerHTML = `
-      <div class="thumb">${gm.emoji}</div>
+      <div class="thumb" style="background:linear-gradient(135deg,${gm.bg},#0a0a1a)">
+        <span style="font-size:44px">${gm.flag}</span>
+      </div>
       <div class="info">
-        <div class="gname">${gm.name}</div>
-        <div class="gtag">${gm.tag}</div>
-        ${gm.ext ? '<span class="ext-badge">↗ abre no tavvkkj</span>' : ''}
+        <div class="gname">Subway Surfers</div>
+        <div class="gtag">${gm.name}</div>
       </div>`;
-    c.onclick = () => openGame(gm);
+    c.onclick = () => open(gm);
     g.appendChild(c);
   });
 }
@@ -164,26 +142,20 @@ function buildGrid(list) {
 function filter() {
   const q = document.getElementById('sq').value.toLowerCase().trim();
   let list = GAMES;
-  if (currentCat !== 'all') list = list.filter(g => g.cats.includes(currentCat));
-  if (q) list = list.filter(g => g.name.toLowerCase().includes(q) || g.tag.toLowerCase().includes(q));
+  if (cat !== 'all') list = list.filter(g => g.cats.includes(cat));
+  if (q) list = list.filter(g => g.name.toLowerCase().includes(q));
   buildGrid(list);
 }
 
-function setCat(cat, btn) {
-  currentCat = cat;
+function setCat(c, btn) {
+  cat = c;
   document.querySelectorAll('.cat').forEach(b => b.classList.remove('on'));
   btn.classList.add('on');
   filter();
 }
 
-function openGame(gm) {
-  if (gm.ext) {
-    // jogos HTML5 do tavvkkj — abre numa nova aba pois bloqueiam iframe
-    window.open(gm.src, '_blank');
-    return;
-  }
-  // versões subway jsdelivr — carrega no player interno
-  document.getElementById('ptitle').textContent = gm.name;
+function open(gm) {
+  document.getElementById('ptitle').textContent = 'Subway Surfers — ' + gm.name;
   const fr = document.getElementById('fr');
   const ld = document.getElementById('ld');
   ld.classList.remove('h');
@@ -191,10 +163,10 @@ function openGame(gm) {
   document.getElementById('ov').classList.add('open');
   document.body.style.overflow = 'hidden';
   setTimeout(() => {
-    fr.src = gm.src;
-    fr.onload = () => setTimeout(() => ld.classList.add('h'), 400);
-    setTimeout(() => ld.classList.add('h'), 8000);
-  }, 80);
+    fr.src = CDN + gm.pkg + '/index.html';
+    fr.onload = () => setTimeout(() => ld.classList.add('h'), 500);
+    setTimeout(() => ld.classList.add('h'), 10000);
+  }, 100);
 }
 
 function closeGame() {
@@ -205,10 +177,11 @@ function closeGame() {
 
 function goFS() {
   const w = document.getElementById('fw');
-  (w.requestFullscreen || w.webkitRequestFullscreen).call(w);
+  (w.requestFullscreen || w.webkitRequestFullscreen || function(){}).call(w);
 }
 
 buildGrid(GAMES);
 </script>
 </body>
 </html>
+
